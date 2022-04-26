@@ -50,16 +50,16 @@ jobs:
           aws-secret-access-key : ${{ secrets.MY_AWS_SECRET_KEY }}
           aws-region            : ${{ env.AWS_REGION_NAME }}
 
-      - name: Create new ElastikBeanstalk application
+      - name: Create new ElasticBeanstalk application
         run :
-          aws elastikbeanstalk create-application-version \
+          aws elasticbeanstalk create-application-version \
           --application-name ${{ env.EB_APPLICATION_NAME}} \
           --source-bundle S#Bucket="${{ env.EB_PACKAGE_S3_BUCKET_NAME }}",S3Key="${{ env.DEPLOY_PACKAGE_NAME }}" \
           --version-label "Ver-${{ github.sha }}" \
           --description "CommitSHA-${{ github.sha }}"
 
-      - name: Deploy new ElastikBeanstalk application Version
-        run : aws elastikbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-label "Ver-${{ github.sha }}"
+      - name: Deploy new ElasticBeanstalk application Version
+        run : aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --version-label "Ver-${{ github.sha }}"
 
       - name: Print Message for CD finish
         run : echo "CD Pipeline part finished successfully!"
