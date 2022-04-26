@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Git clone my repo
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       
       - name: Create ZIP deployment package
